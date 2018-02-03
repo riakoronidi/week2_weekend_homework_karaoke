@@ -4,6 +4,7 @@ require("minitest/rg")
 require_relative("../room.rb")
 require_relative("../guest.rb")
 require_relative("../song.rb")
+require_relative("../bar.rb")
 
 class TestRoom < MiniTest::Test
 
@@ -11,6 +12,7 @@ class TestRoom < MiniTest::Test
     @room = Room.new("Pop", 5, 5)
     @room = Room.new("Rock", 10, 5)
   end
+  
 
   def test_add_guests
     room = Room.new("Rock", 3, 5)
@@ -38,7 +40,6 @@ class TestRoom < MiniTest::Test
 
     assert_equal("Sorry, there is no free space to enter the #{@room.name} room", result)
   end
-
 
 
   def test_remove_guests
@@ -114,7 +115,20 @@ class TestRoom < MiniTest::Test
     result = @room.check_fav_song(guest2, song2, room)
 
     assert_equal("Whoo!",result)
-
   end
+
+
+  def test_add_spending_to_tab
+    room = Room.new("Rock", 3, 5)
+
+    bar = Bar.new(10)
+
+    guest1 = Guest.new("Ria", 20, "I lose control")
+    paid_fee = @room.pay_fee(guest1,room)
+    tab_final = @room.add_spending(paid_fee, bar)
+
+    assert_equal(5, tab_final)
+  end
+
 
 end

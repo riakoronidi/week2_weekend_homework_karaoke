@@ -11,7 +11,4 @@ class TestSong < MiniTest::Test
     @song = Song.new("I lose control", "ROCK")
   end
 
-
-
-
 end

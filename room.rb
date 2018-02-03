@@ -1,4 +1,3 @@
-# require("pry")
 class Room
 
   attr_accessor :name, :capacity, :fee
@@ -9,6 +8,7 @@ class Room
     @fee = fee
     @songs = []
     @guests = []
+    @tab = 0
   end
 
 
@@ -25,11 +25,6 @@ class Room
       return "Sorry, there is no free space to enter the #{room.name} room"
     end
   end
-
-  # def check_in_guest(guest,room)
-  #   @guests << guest
-  #   return @guests
-  # end
 
 
   def check_out_guest(guest)
@@ -51,7 +46,6 @@ class Room
   end
 
 
-
   def pay_fee(guest,room)
     if guest.money > room.fee
       return guest.money - room.fee
@@ -65,6 +59,11 @@ class Room
     if guest.fav_song == song.name
       return "Whoo!"
     end
+  end
+
+
+  def add_spending(paid_fee, bar)
+    return @tab = paid_fee - bar.drink_food
   end
 
 end

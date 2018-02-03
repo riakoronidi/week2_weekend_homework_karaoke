@@ -11,6 +11,4 @@ class TestGuest < MiniTest::Test
     @guest = Guest.new("Zoi",20, "La isla bonita")
   end
 
-
-
 end
